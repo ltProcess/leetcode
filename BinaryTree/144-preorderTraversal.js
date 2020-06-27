@@ -27,3 +27,21 @@ const preorderTraversal = function(root) {
   preOrder(root, result);
   return result;
 };
+
+// 非递归func
+const preorderTraversal2 = function(root) {
+  const result = [];
+  const stack = [];
+  while (root !== null || stack.length !== 0) {
+    while (root !== null) {
+      result.push(root.val);
+      stack.push(root);
+      root = root.left;
+    }
+    if (stack.length !== 0) {
+      root = stack.pop();
+      root = root.right;
+    }
+  }
+  return result;
+};
