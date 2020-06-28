@@ -26,3 +26,27 @@ const postorderTraversal = function(root) {
   postOrder(root, result);
   return result;
 };
+
+// 非递归版本
+const postorderTraversal1 = function(root) {
+  const result = [];
+  const stack = [];
+  let lastVisited = root;
+
+  while (root !== null || stack.length !== 0) {
+    while (root !== null) {
+      stack.push(root);
+      root = root.left;
+    }
+    root = stack[stack.length -  1];
+    if (root.right === null || root.right === lastVisited) {
+      result.push(root.val);
+      stack.pop();
+      lastVisited = root;
+      root = null;
+    } else {
+      root = root.right;
+    }
+  }
+  return result;
+}
