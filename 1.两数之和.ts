@@ -27,6 +27,7 @@ function twoSum(nums: number[], target: number): number[] {
     }
     m.set(n,i);
   }
+  console.log(m);
 };
 // @lc code=end
 
