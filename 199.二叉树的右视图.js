@@ -25,10 +25,10 @@ var rightSideView = function(root) {
     let [node, dep] = queList.shift();
     result[dep] = node.val;
     if (node.left) {
-      queList.push[[node.left, dep+1]];
+      queList.push([node.left, dep + 1]);
     }
     if (node.right) {
-      queList.push[[node.right, dep+ 1]]
+      queList.push([node.right, dep + 1]);
     }
   }
   return result;
