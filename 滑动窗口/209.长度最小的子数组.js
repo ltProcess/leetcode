@@ -26,6 +26,5 @@ var minSubArrayLen = function(target, nums) {
   }
   return result;
 };
-console.log(minSubArrayLen(11, [1,2,3,4,5]))
 // @lc code=end
 
