@@ -11,13 +11,9 @@
  */
 var moveZeroes = function(nums) {
   const len = nums.length;
-  let j = null;
-  for (let i = 0; i < len; i++) {
-    if (j === null && nums[i] !== 0) continue;
-    if (nums[i] === 0 && j === null) {
-      j = i;
-      continue;
-    }
+  let j = nums.indexOf(0);
+  if ( j === -1) return nums;
+  for (let i = j + 1; i < len; i++) {
     if (nums[i] !== 0) {
       let temp;
       temp = nums[j];
@@ -28,6 +24,5 @@ var moveZeroes = function(nums) {
   }
   return nums;
 };
-console.log(moveZeroes([5,1,3,3, 0, 1, 0,12]));
 // @lc code=end
 
