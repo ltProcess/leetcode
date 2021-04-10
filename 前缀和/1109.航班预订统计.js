@@ -13,7 +13,7 @@
 var corpFlightBookings = function(bookings, n) {
   let addMap = new Map();
   let minusMap = new Map();
-  for(let i = 0;i < bookings.length; i++){
+  for(let i = 0; i < bookings.length; i++){
     let [start, end, tickets] = bookings[i];
     addMap.set(start,(addMap.get(start)||0)+tickets);
     minusMap.set(end,(minusMap.get(end)||0)+tickets);
@@ -21,7 +21,7 @@ var corpFlightBookings = function(bookings, n) {
   // console.log(addMap, minusMap);
   let sum = 0;
   let ans= new Array(n);
-  for(let i = 0;i < n; i++){
+  for(let i = 0; i < n; i++){
     sum += addMap.get(i+1)||0;
     ans[i] = sum;
     sum -= minusMap.get(i+1)||0;
