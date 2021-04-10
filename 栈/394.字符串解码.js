@@ -10,24 +10,22 @@
  * @return {string}
  */
 var decodeString = function(s) {
-  const strStack = [];
   const numStack = [];
+  const strStack = [];
+  let result = ''
   let num = 0;
-  let result = '';
-  for (const i of s) {
-    if (!isNaN(i)) {
-      num = num * 10 + Number(i);
-    } else if (i === '[') {
+  for (const str of s) {
+    if (!isNaN(str)) {
+      num = num * 10 + Number(str);
+    } else if (str === '[') {
       numStack.push(num);
       strStack.push(result);
       result = '';
       num = 0;
-    } else if (i === ']') {
-      const times = numStack.pop();
-      const str = strStack.pop();
-      result = str + result.repeat(times);
+    } else if (str === ']') {
+      result = strStack.pop() + result.repeat(numStack.pop());
     } else {
-      result += i;
+      result += str;
     }
   }
   return result;
