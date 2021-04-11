@@ -11,18 +11,17 @@
  */
  var rotate = function(matrix) {
   const len = matrix.length;
-  if (len=== 1) return matrix;
-  const result = new Array(len);
-  for (let k = 0; k < len; k++) {
-    result[k] = [];
-  }
+  if (len === 0) return;
   for (let i = 0; i < len; i++) {
-    const current = matrix[i];
-    for (let j = 0; j < current.length; j++) {
-      result[j].unshift(current[j]);
+    for (let j = 0; j < len; j++) {
+      let current = matrix[i].shift();
+      matrix[j].push(current);
     }
   }
-  return result;
+  for (let k = 0; k < len; k++) {
+    matrix[k].reverse();
+  }
 };
+rotate([[1,2,3],[4,5,6],[7,8,9]])
 // @lc code=end
 
