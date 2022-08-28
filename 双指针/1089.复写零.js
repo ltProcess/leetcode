@@ -28,7 +28,8 @@ const newDuplicateZeros = (arr) => {
     }
   }
   let j = len - 1;
-  if (top === n + 1) {
+
+  if (top === len + 1) {
     arr[j] = 0;
     j--;
     i--;
