@@ -14,3 +14,33 @@ const duplicateZeros = (arr) => {
   }
   arr.splice(len, arr.length - len);
 };
+
+const newDuplicateZeros = (arr) => {
+  const len = arr.length;
+  let top = 0;
+  let i = -1;
+  while (top < len) {
+    i++;
+    if (arr[i] === 0) {
+      top = top + 2;
+    } else {
+      top = top + 1;
+    }
+  }
+  let j = len - 1;
+  if (top === n + 1) {
+    arr[j] = 0;
+    j--;
+    i--;
+  }
+
+  while (j >= 0) {
+    arr[j] = arr[i];
+    j--;
+    if (arr[i] === 0) {
+      arr[j] = arr[i];
+      j--;
+    }
+    i--;
+  }
+};
