@@ -9,64 +9,41 @@
  * @param {string} queryIP
  * @return {string}
  */
-var validIPAddress = function (queryIP) {
-  if (queryIP.indexOf(".") >= 0) {
-    // IPv4
-    let last = -1;
-    for (let i = 0; i < 4; ++i) {
-      const cur = i === 3 ? queryIP.length : queryIP.indexOf(".", last + 1);
-      if (cur < 0) {
-        return "Neither";
-      }
-      if (cur - last - 1 < 1 || cur - last - 1 > 3) {
-        return "Neither";
-      }
-      let addr = 0;
-      for (let j = last + 1; j < cur; ++j) {
-        if (!isDigit(queryIP[j])) {
-          return "Neither";
-        }
-        addr = addr * 10 + (queryIP[j].charCodeAt() - "0".charCodeAt());
-      }
-      if (addr > 255) {
-        return "Neither";
-      }
-      if (addr > 0 && queryIP[last + 1].charCodeAt() === "0".charCodeAt()) {
-        return "Neither";
-      }
-      if (addr === 0 && cur - last - 1 > 1) {
-        return "Neither";
-      }
-      last = cur;
-    }
-    return "IPv4";
-  } else {
-    // IPv6
-    let last = -1;
-    for (let i = 0; i < 8; ++i) {
-      const cur = i === 7 ? queryIP.length : queryIP.indexOf(":", last + 1);
-      if (cur < 0) {
-        return "Neither";
-      }
-      if (cur - last - 1 < 1 || cur - last - 1 > 4) {
-        return "Neither";
-      }
-      for (let j = last + 1; j < cur; ++j) {
-        if (
-          !isDigit(queryIP[j]) &&
-          !("a" <= queryIP[j].toLowerCase() && queryIP[j].toLowerCase() <= "f")
-        ) {
-          return "Neither";
-        }
-      }
-      last = cur;
-    }
-    return "IPv6";
-  }
-};
 
-const isDigit = (ch) => {
-  return parseFloat(ch).toString() === "NaN" ? false : true;
+//  IPv4：1. 点号分割，长度一定为4；2. 每组字符串不能以 0 开头；3. 数值必须在：【0, 255】
+//  IPv6：1. 冒号分割，长度一定为8；2. 每组必须是 16进制；3. 字符串长度一定为：【1, 4】之间
+
+var validIPAddress = function (IP) {
+  function checkIPv4(ip) {
+    const ipArr = ip.split(".");
+    if (ipArr.length !== 4) {
+      return "Neither";
+    }
+
+    return ipArr.reduce((res, current) => {
+      if (current.length === 1) {
+        return res;
+      } else {
+        return current[0] !== "0" &&
+          parseInt(current, 10) >= 10 &&
+          parseInt(current, 10) <= 255
+          ? res
+          : "Neither";
+      }
+    }, "IPv4");
+  }
+  function checkIPv6(ip) {
+    const ipArr = ip.split(":");
+    if (ipArr.length !== 8) {
+      return "Neither";
+    }
+
+    return ipArr.reduce((res, current) => {
+      return /^[A-Fa-f0-9]{1,4}$/.test(current) ? res : "Neither";
+    }, "IPv6");
+  }
+
+  return checkIPv4(IP) === "IPv4" ? "IPv4" : checkIPv6(IP);
 };
 
 // @lc code=end
