@@ -22,12 +22,12 @@
 // 空间复杂度O(1)
 const myReverse = (head, tail) => {
   let prev = tail.next;
-  let p = head;
+  let curr = head;
   while (prev !== tail) {
-    const next = p.next;
-    p.next = prev;
-    prev = p;
-    p = next;
+    const next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
   }
   return [tail, head];
 };
