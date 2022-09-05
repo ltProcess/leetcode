@@ -17,7 +17,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var rightSideView = function(root) {
+var rightSideView = function (root) {
   if (!root) return [];
   let result = [];
   let queList = [[root, 0]];
@@ -34,4 +34,3 @@ var rightSideView = function(root) {
   return result;
 };
 // @lc code=end
-

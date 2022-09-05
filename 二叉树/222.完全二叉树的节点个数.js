@@ -17,6 +17,7 @@
  * @param {TreeNode} root
  * @return {number}
  */
+// 时间复杂度O(N)
 var countNodes = function (root) {
   if (!root) return 0;
   let result = 1;
