@@ -32,7 +32,7 @@ const combinationSum = (candidates, target) => {
   const dfs = (start, temp, sum) => {
     // start是当前选择的起点索引 temp是当前的集合 sum是当前求和
     if (sum >= target) {
-      if (sum == target) {
+      if (sum === target) {
         res.push(temp.slice()); // temp的拷贝 加入解集
       }
       return; // 结束当前递归
