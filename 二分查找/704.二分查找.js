@@ -16,7 +16,7 @@ const search = function (nums, target) {
   const binarySearch = (nums, target, left, right) => {
     if (left > right) return -1;
     let mid = left + Math.floor((right - left) / 2);
-    if (nums[mid] === target) return target;
+    if (nums[mid] === target) return mid;
     else if (nums[mid] < target) {
       return binarySearch(nums, target, mid + 1, right);
     } else {
