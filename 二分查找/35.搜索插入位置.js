@@ -20,7 +20,7 @@ const searchInsert = function (nums, target) {
     if (target === nums[mid]) return mid;
     else if (target < nums[mid]) {
       right = mid - 1;
-      result = mid - 1;
+      result = mid;
     } else {
       left = mid + 1;
     }
