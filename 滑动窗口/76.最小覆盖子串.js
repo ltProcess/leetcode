@@ -56,7 +56,7 @@ const minWindow = function (s, t) {
       // 左移窗口
       left++;
       if (need[d]) {
-        if (window[d] == need[d]) {
+        if (window[d] === need[d]) {
           valid--;
         }
         window[d]--;
