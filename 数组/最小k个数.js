@@ -7,39 +7,46 @@
  * @param {number} k
  * @return {number[]}
  */
-const smallestK = function (arr, k) {
-  if (k === 0) {
-    return [];
-  }
-  let sorted = false;
-  function quicksort(lo, hi) {
-    if (sorted || lo >= hi) {
-      return;
-    }
-    let i = lo;
-    let j = hi;
-    const num = arr[lo];
-    while (i < j) {
-      while (i < j && arr[j] >= num) {
-        j--;
-      }
-      arr[i] = arr[j];
-      while (i < j && arr[i] <= num) {
-        i++;
-      }
-      arr[j] = arr[i];
-    }
-    arr[i] = num;
-    if (i === k) {
-      sorted = true;
-      return;
-    }
-    quicksort(lo, i - 1);
-    quicksort(i + 1, hi);
-  }
-  quicksort(0, arr.length - 1);
+var smallestK = function (arr, k) {
+  selectK(arr, 0, arr.length - 1, k - 1);
+
   return arr.slice(0, k);
 };
+function selectK(arr, l, r, k) {
+  let p = partition(arr, l, r, k);
+  if (k == p) {
+    return arr[p];
+  } else if (k < p) {
+    return selectK(arr, l, p - 1, k);
+  } else {
+    return selectK(arr, p + 1, r, k);
+  }
+}
+
+function partition(arr, l, r, k) {
+  let p = l + Math.floor(Math.random(r - l + 1));
+  swap(arr, l, p);
+  let i = l + 1,
+    j = r;
+  while (true) {
+    while (i <= j && arr[i] < arr[l]) {
+      i++;
+    }
+    while (i <= j && arr[j] > arr[l]) {
+      j--;
+    }
+    if (i >= j) break;
+    swap(arr, i, j);
+    i++;
+    j--;
+  }
+
+  swap(arr, l, j);
+  return j;
+}
+function swap(arr, i, j) {
+  [arr[i], arr[j]] = [arr[j], arr[i]];
+}
 
 var quickSort2 = function (arr) {
   if (arr.length <= 1) {
