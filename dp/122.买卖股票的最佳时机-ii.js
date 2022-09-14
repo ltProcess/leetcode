@@ -15,6 +15,8 @@
 // dp[i][0]=max{dp[i−1][0],dp[i−1][1]+prices[i]}
 // dp[i][1]=max{dp[i−1][1],dp[i−1][0]−prices[i]}
 
+// 时间复杂度O(n)
+
 const maxProfit = function (prices) {
   const len = prices.length;
   const dp = new Array(len).fill(0).map((item) => new Array(2).fill(0));
