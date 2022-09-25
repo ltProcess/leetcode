@@ -24,7 +24,7 @@ const permuteUnique = function (nums) {
       if (used[i]) {
         continue;
       }
-      if (i - 1 >= 0 && nums[i - 1] == nums[i] && !used[i - 1]) {
+      if (i - 1 >= 0 && nums[i - 1] === nums[i] && !used[i - 1]) {
         // 避免产生重复的排列
         continue;
       }
