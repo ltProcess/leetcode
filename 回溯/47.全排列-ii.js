@@ -16,7 +16,7 @@ const permuteUnique = function (nums) {
   nums.sort((a, b) => a - b);
 
   const dfs = (path) => {
-    if (path.length === nums.length) {
+    if (path.length === len) {
       result.push(path.slice());
       return;
     }
